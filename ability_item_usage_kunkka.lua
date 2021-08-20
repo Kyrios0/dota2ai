@@ -226,7 +226,7 @@ Consider[1]=function()
 		then
 			if ( CanCast[abilityNumber]( npcTarget ) and npcTarget:HasModifier("modifier_kunkka_x_marks_the_spot"))
 			then
-				if npcTarget:GetModifierRemainingDuration( npcTarget:GetModifierByName('modifier_kunkka_x_marks_the_spot') )< 1.6
+				if (npcTarget:GetModifierRemainingDuration( npcTarget:GetModifierByName('modifier_kunkka_x_marks_the_spot') )< 1.6)
 				then
 					return BOT_ACTION_DESIRE_HIGH+0.15, npcTarget:GetExtrapolatedLocation(-2.5);
 				end
