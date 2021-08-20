@@ -441,7 +441,11 @@ Consider[6] = function()
 		lastInfestTarget = nil
 		lastInfestTime = nil
 	end
-	local infestTime = DotaTime() - lastInfestTime
+	local infestTime = 0
+	if (lastInfestTarget ~= nil)
+	then
+		infestTime = DotaTime() - lastInfestTime
+	end
 	local infest3 = infestTime > 3
 	local infest10 = infestTime > 10
 	
