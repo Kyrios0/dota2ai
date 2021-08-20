@@ -91,10 +91,10 @@ CanCast[1] = function(target)
 	if target:HasModifier("modifier_shadow_demon_disruption") then
 		return false
 	end
-	if npcBot:GetTeam() == t:GetTeam() then
-		return AbilityExtensions:SpellCanCast(t, true, true, true) and not AbilityExtensions:DontInterruptAlly(t) and not t:IsMagicImmune()
+	if npcBot:GetTeam() == target:GetTeam() then
+		return AbilityExtensions:SpellCanCast(target, true, true, true) and not AbilityExtensions:DontInterruptAlly(target) and not target:IsMagicImmune()
 	else
-		return AbilityExtensions:NormalCanCast(t, false, DAMAGE_TYPE_MAGICAL) and not target:HasModifier("modifier_antimage_counterspell")
+		return AbilityExtensions:NormalCanCast(target, false, DAMAGE_TYPE_MAGICAL) and not target:HasModifier("modifier_antimage_counterspell")
 	end
 end
 CanCast[2] = function(target)
