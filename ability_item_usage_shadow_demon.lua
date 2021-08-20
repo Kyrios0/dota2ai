@@ -87,7 +87,7 @@ function GetComboMana()
 end
 
 local CanCast = {}
-CanCast[1] = function(t)
+CanCast[1] = function(target)
 	if target:HasModifier("modifier_shadow_demon_disruption") then
 		return false
 	end
