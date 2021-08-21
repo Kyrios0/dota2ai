@@ -13,8 +13,8 @@ local ItemsToBuy =
 	"item_boots",
 	"item_null_talisman",
 	"item_energy_booster",
-	"item_veil_of_discord", --纷争7.20
 	"item_cyclone", --风杖
+	"item_veil_of_discord", --纷争7.20
 	"item_aghanims_shard",
 	"item_octarine_core", --玲珑心
 	-- "item_mekansm",

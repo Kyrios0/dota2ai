@@ -10,7 +10,6 @@ local ItemsToBuy =
 	"item_bottle",
 	"item_phase_boots",
 	"item_magic_wand", --大魔棒7.14
-    "item_witch_blade",
 	"item_cyclone", --风杖
 	"item_ultimate_scepter", --蓝杖
 	"item_invis_sword",

@@ -227,6 +227,23 @@ Consider[2]=function()
 	--------------------------------------
 	-- Global high-priorty usage
 	--------------------------------------
+	-- Follow with cyclone
+	for _,npcEnemy in pairs( enemys )
+	do
+		local remain = 0
+		if (npcEnemy:HasModifier("modifier_eul_cyclone")) 
+		then
+			remain = npcEnemy:GetModifierRemainingDuration( npcEnemy:GetModifierByName('modifier_eul_cyclone') )
+		end
+		if (npcEnemy:HasModifier("modifier_wind_waker"))
+		then
+			remain = npcEnemy:GetModifierRemainingDuration( npcEnemy:GetModifierByName('modifier_wind_waker') )
+		end
+		if (remain > 0 and remain < 0.95 and utility.IVCanCast(npcEnemy))
+		then
+			return BOT_ACTION_DESIRE_HIGH, npcEnemy:GetExtrapolatedLocation(CastPoint);
+		end
+	end
 
 	-- Check for a channeling enemy
 	for _,npcEnemy in pairs( enemys )

@@ -114,6 +114,24 @@ Consider[1]=function()
 	-- Global high-priorty usage
 	--------------------------------------
 
+	-- Follow with cyclone
+	for _,npcEnemy in pairs( enemys )
+	do
+		local remain = 0
+		if (npcEnemy:HasModifier("modifier_eul_cyclone")) 
+		then
+			remain = npcEnemy:GetModifierRemainingDuration( npcEnemy:GetModifierByName('modifier_eul_cyclone') )
+		end
+		if (npcEnemy:HasModifier("modifier_wind_waker"))
+		then
+			remain = npcEnemy:GetModifierRemainingDuration( npcEnemy:GetModifierByName('modifier_wind_waker') )
+		end
+		if (remain > 0 and remain < 1.05 and utility.IVCanCast(npcEnemy))
+		then
+			return BOT_ACTION_DESIRE_HIGH, npcEnemy:GetExtrapolatedLocation(CastPoint);
+		end
+	end
+
 	-- Check for a channeling enemy
 	for _,npcEnemy in pairs( enemys )
 	do
@@ -132,7 +150,7 @@ Consider[1]=function()
 			then
 				if(HeroHealth<=WeakestEnemy:GetActualIncomingDamage(Damage,DAMAGE_TYPE_MAGICAL)*1.8 or (HeroHealth<=WeakestEnemy:GetActualIncomingDamage(GetComboDamage(),DAMAGE_TYPE_MAGICAL) and npcBot:GetMana()>ComboMana))
 				then
-					return BOT_ACTION_DESIRE_HIGH,WeakestEnemy:GetExtrapolatedLocation(CastPoint); 
+					return BOT_ACTION_DESIRE_LOW,WeakestEnemy:GetExtrapolatedLocation(CastPoint); 
 				end
 			end
 		end
@@ -189,7 +207,7 @@ Consider[1]=function()
 	then
 		if(WeakestEnemy~=nil and CanCast[abilityNumber]( WeakestEnemy ))
 		then
-			if(ManaPercentage>0.66 or npcBot:GetMana()>ComboMana)
+			if(ManaPercentage>0.9 or npcBot:GetMana()>ComboMana)
 			then				
 				return BOT_ACTION_DESIRE_LOW,WeakestEnemy:GetExtrapolatedLocation(CastPoint)
 			end		
@@ -204,15 +222,15 @@ Consider[1]=function()
 	then
 		local locationAoE = npcBot:FindAoELocation( true, true, npcBot:GetLocation(), CastRange, Radius, CastPoint, 0 );
 		if ( locationAoE.count >= 2 ) then
-			return BOT_ACTION_DESIRE_MODERATE, locationAoE.targetloc;
+			return BOT_ACTION_DESIRE_LOW, locationAoE.targetloc;
 		end
 		
 		local npcTarget = npcBot:GetTarget();
 		if ( npcTarget ~= nil ) 
 		then
 			if ( CanCast[abilityNumber]( npcTarget ) )
-				then
-				return BOT_ACTION_DESIRE_MODERATE, npcTarget:GetExtrapolatedLocation(CastPoint);
+			then
+				return BOT_ACTION_DESIRE_LOW, npcTarget:GetExtrapolatedLocation(CastPoint);
 			end
 		end
 	end

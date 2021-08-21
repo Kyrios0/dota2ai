@@ -26,6 +26,10 @@ function utilityModule.UCanCast( npcEnemy )--magic immune
 	return npcEnemy:CanBeSeen() and not npcEnemy:IsInvulnerable() and not utilityModule.HasImmuneDebuff(npcEnemy) and not npcEnemy:IsIllusion()
 end
 
+function utilityModule.IVCanCast( npcEnemy )--Invulnerable
+	return npcEnemy:CanBeSeen() and not npcEnemy:IsIllusion()
+end
+
 function utilityModule.CanCastNoTarget()
     return true
 end
